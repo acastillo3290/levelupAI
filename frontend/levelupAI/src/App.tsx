@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Link, Route, Routes } from "react-router-dom";
+import LearnSkill from "./pages/learn-skill.tsx";
+import SignIn from "./pages/sign-in.tsx";
+import JobListing from "./pages/job-listing.tsx";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function Navbar() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="navbar">
+      <ul>
+        <li>
+          <Link to="/">home</Link>
+        </li>
+        <li>
+          <Link to="/pages/job-listing">job listing</Link>
+        </li>
+        <li>
+          <Link to="/pages/learn-skill">learn skill</Link>
+        </li>
+        <li>
+          <Link to="/pages/sign-in">Sign in</Link>
+        </li>
+      </ul>
+    </div>
+  );
 }
 
-export default App
+function Home() {
+  return (
+    <div>
+      <h1>Welcome to LevelUp AI</h1>
+      <p>Your personalized learning and career development platform.</p>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pages/learn-skill" element={<LearnSkill />} />
+        <Route path="/pages/sign-in" element={<SignIn />} />
+        <Route path="/pages/job-listing" element={<JobListing />} />
+      </Routes>
+    </>
+  );
+}
+
+export default App;
